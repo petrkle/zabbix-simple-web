@@ -1,0 +1,11 @@
+body{font-size:3em;font-family:sans-serif;font-weight:bold;margin:0;padding:0;background:#000;color:#fff;}
+ul{list-style:none;}
+.trigger1{color:#fff;}
+.trigger2{color:#ff0;}
+.trigger3{color:#f80;}
+.trigger4{color:#f00;}
+.trigger5{color:#fff;}
+.trigger6{color:#fff;}
+span.time{font-size:0.5em;width:6em;display:inline-block;text-align:right;}
+span.hostname{font-size:2em;display:inline-block;margin:0 0.4em;}
+#alertlist li{font-size:0.7em;}
