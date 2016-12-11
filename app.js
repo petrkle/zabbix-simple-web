@@ -77,26 +77,31 @@ function redrawscreen(refresh) {
             var notificationid = foo.triggerid + '_' + foo.lastchange;
             $('#alertlist').append('<li class="trigger' + foo.priority + '"><span class="time">' + lastchange + '</span><span class="hostname">' + hostname + '</span> ' + foo.description + '</li>');
 
-            if (sessionStorage.getItem(notificationid) === null) {
-                var notification = new Notification(hostname, {
-                    icon: 'img/' + foo.priority + '.png',
-                    body: foo.description,
-                });
-                notification.onclick = function() {
-                    window.focus();;
-                };
-
-                setTimeout(function() {
-                    notification.close();
-                }, 5000);
-
+            if (sessionStorage.getItem('firstrun') === null) {
                 sessionStorage.setItem(notificationid, 1);
+            } else {
+                if (sessionStorage.getItem(notificationid) === null) {
+                    var notification = new Notification(hostname, {
+                        icon: 'img/' + foo.priority + '.png',
+                        body: foo.description,
+                    });
+                    notification.onclick = function() {
+                        window.focus();;
+                    };
+
+                    setTimeout(function() {
+                        notification.close();
+                    }, 5000);
+
+                    sessionStorage.setItem(notificationid, 1);
+                }
             }
             if (foo.priority > maxpriority) {
                 maxpriority = foo.priority
             }
 
         })
+        sessionStorage.setItem('firstrun', 1);
         var title = 'ZBX';
         if (triggers.length > 0) {
             title = title + ' (' + triggers.length + ')';
